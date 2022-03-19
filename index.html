@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The writer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
+
+</head>
+
+<body>
+
+    <div class="box">
+        <div class="overlay"></div>
+        <div class="side-bar">
+
+
+            <div class="app-name-container">
+                <h2>The App</h2>
+            </div>
+            <div class="new-doc">
+                <label>New</label>
+            </div>
+            <div class="recently category">
+                <label for="recently-btn">Recently
+                    <span><i class="bi bi-caret-down-fill"></i></span>
+                
+                </label>
+                <input type="checkbox" id="recently-btn" class="invisible-checkbox">
+                <ul class="recently-document">
+                    <!-- localStorage -->
+
+
+
+                </ul>
+            </div>
+            <div class="favorite category">
+                <label for="favorite-btn">Favorite
+                    <span><i class="bi bi-caret-down-fill"></i></span>
+                    </label>
+                <input type="checkbox" id="favorite-btn" class="invisible-checkbox" checked>
+                <ul class="favorite-document">
+                    <!-- localStorage -->
+                    <!-- <li>
+                        <div class="document-overview" id="${name}" onclick="getCurrentDocument(${name})">
+                            <div><a href="#">${name}.docx</a></div>
+                            <button type="button" onclick="changeFavoriteStatus(${name})"><i class="fa-solid fa-heart"></i></button>
+
+                            <i class="bi bi-info-circle info" style="cursor:pointer"></i>
+                        </div>
+                    </li> -->
+                    <!-- onclick="changeFavoriteStatus(${name})" onclick="getCurrentDocument(${name})" -->
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <div class="toolbar">
+                <div class="doc-name">
+                    <h2 class="title">Documentation</h2>
+                </div>
+                <div class="edit">
+                    <label for="edit-btn" class="icon">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        </label>
+                    <input type="checkbox" id="edit-btn" class="invisible-checkbox">
+                </div>
+
+                <div class="tool">
+                    <label for="tool-btn" class="icon">
+                        <i class="bi bi-three-dots" ></i>
+                        </label>
+                    <input type="checkbox" id="tool-btn" class="invisible-checkbox">
+                    <ul class="tool-menu">
+                        <li>
+                            <div class="downloadd">
+                                <label for="download-btn" class="icon">
+                                    <a href="data:text/html," download id="download-link" >Download</a>
+                                <span><i class="bi bi-download"></i></span>
+                                </label>
+                                <input type="checkbox" id="download-btn" class="invisible-checkbox">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="save">
+                                <label for="save-btn" class="icon">Save
+                                    <span><i class="bi bi-save2"></i></span>
+                                </label>
+                                <input type="checkbox" id="save-btn" class="invisible-checkbox"></div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <label for="info-btn" class="icon">Info
+                                    <span><i class="bi bi-info-circle"></i></span>
+                                </label>
+                                <input type="checkbox" id="info-btn" class="invisible-checkbox"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div id="editor">
+
+                </div>
+            </div>
+
+
+            <div class="edit-popup popup">
+                <div class="close-btn edit-close-btn" style="cursor: pointer;"><i class="bi bi-x-lg" style="position: relative; left:-2.5px;top:0.5px;"></i></div>
+                <div class="popup-content">
+                    <label class="popup-label" for="edit-popup-input">Name:</label>
+                    <input type="text" id="edit-popup-input" class="popup-input">
+                </div>
+
+                <div class="edit-popup-submit popup-submit">
+                    <label style="cursor:pointer;">Submit</label>
+                </div>
+            </div>
+            <div class="new-popup popup">
+                <div class="close-btn new-close-btn" style="cursor: pointer;"><i class="bi bi-x-lg"></i></div>
+                <div class="popup-content">
+                    <label class="popup-label" for="new-popup-input">Name:</label>
+                    <input type="text" id="new-popup-input" class="popup-input">
+                </div>
+                <div class="new-popup-submit popup-submit">
+                    <label style="cursor:pointer;">Submit</label>
+                </div>
+            </div>
+            <div class="info-popup popup">
+                <div class="close-btn info-close-btn" style="cursor: pointer;"><i class="bi bi-x-lg" style="position: relative; left:-2px;"></i></div>
+                <div class="popup-content">
+                    <label class="popup-label" id="info-popup-label">Name:</label>
+
+                </div>
+                <label id="last-opened"></label>
+                <div class="info-popup-deltete popup-delete">
+                    <label style="cursor:pointer;">Delete</label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script>
+    var editor;
+    var download = document.querySelector('#download-link');
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .then(newEditor => {
+            editor = newEditor;
+
+
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
+
+
+    document.querySelector('#download-link').addEventListener('click', () => {
+        const editorData = editor.getData();
+        var converted = htmlDocx.asBlob(editorData, {
+            orientation: 'landscape',
+            margins: {
+                top: 720
+            }
+        });
+        saveAs(converted, 'test.docx');
+        download.href = "data:text/html," + editorData;
+
+
+
+    });
+</script>
+
+
+
+
+
+</html>

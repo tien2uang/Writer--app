@@ -1,0 +1,370 @@
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300&family=Ubuntu:wght@300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+    * {
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+        list-style: none;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: rgb(238, 198, 161);
+    }
+    
+    .box {
+        position: relative;
+        height: 653px;
+        width: 1050px;
+        background: rgb(255, 255, 255);
+        margin: 2rem auto;
+        display: flex;
+    }
+    
+    .side-bar {
+        height: 100%;
+        width: 195px;
+        background: rgb(246, 246, 246);
+    }
+    
+    .invisible-checkbox {
+        display: none;
+    }
+    
+    .main {
+        height: 100%;
+        position: relative;
+        width: 955px;
+    }
+    
+    .toolbar {
+        display: flex;
+        width: 670px;
+        height: 36px;
+        margin: auto;
+        margin-top: 50px;
+        justify-content: space-between;
+    }
+    
+    .editor-container {
+        width: 670px;
+        margin: auto;
+        margin-top: 30px;
+    }
+    
+    .ck-editor__editable_inline {
+        min-height: 380px;
+    }
+    
+    .doc-name {
+        margin-left: 10px;
+    }
+    
+    .icon {
+        font-size: 16px;
+        line-height: 37px;
+        cursor: pointer;
+        text-align: center;
+    }
+    
+    .edit:hover {
+        color: blue;
+    }
+    
+    .download:hover {
+        color: blue;
+    }
+    
+    .download {
+        padding-top: 1px;
+        position: relative;
+        right: 50px;
+    }
+    
+    .edit {
+        position: relative;
+        right: 190px;
+        top: 0px;
+    }
+    
+    .tool {
+        margin-right: 15px;
+        position: relative;
+        top: 5px;
+    }
+    
+    .tool .icon:hover {
+        color: blue;
+    }
+    
+    .tool-menu {
+        position: absolute;
+        z-index: 1;
+        top: 30px;
+        left: -8px;
+        padding-left: 5px;
+        font-size: 10px;
+        width: 110px;
+        background: white;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        display: none;
+    }
+    
+    .tool-menu li:hover {
+        color: blue;
+    }
+    
+    #app-name {
+        font-size: 30px;
+        width: 100%;
+        text-align: center;
+        line-height: 50px;
+        padding-left: 20px;
+    }
+    
+    .app-name-container h2 {
+        font-size: 30px;
+        margin-left: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .new-doc,
+    .new-doc label {
+        width: 89%;
+        height: 45px;
+        background: black;
+        margin: auto;
+        text-align: center;
+        line-height: 45px;
+        color: rgb(187, 171, 171);
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    
+    .new-doc label {
+        background: none;
+    }
+    
+    .category {
+        margin-top: 15px;
+        width: 100%;
+        padding: 3px 14px;
+    }
+    
+    .category span {
+        float: right;
+        line-height: 28px;
+    }
+    
+    .category .recently-document li a,
+    .category .favorite-document li a {
+        font-size: 13px;
+        min-width: 70px;
+    }
+    
+    .category .recently-document li,
+    .category .favorite-document li {
+        margin-bottom: 5px;
+    }
+    
+    .document-overview {
+        display: flex;
+        justify-content: space-between;
+        height: 24px;
+        line-height: 24px;
+    }
+    
+    .document-overview div {
+        margin-left: 10px;
+    }
+    
+    .category .recently-document li:first-child,
+    .category .favorite-document li:first-child {
+        margin-top: 5px;
+    }
+    
+    .category .recently-document li button {
+        display: none;
+    }
+    
+    .category .recently-document li:hover button {
+        display: block;
+    }
+    
+    #recently-btn:checked+ul,
+    #favorite-btn:checked+ul {
+        display: block;
+    }
+    
+    .category .recently-document,
+    .category .favorite-document {
+        display: none;
+        overflow-y: scroll;
+        max-height: 220px;
+        width: 100%;
+        margin-right: 0px;
+    }
+    
+    .category label:hover {
+        color: rgb(230, 9, 83);
+        cursor: pointer;
+    }
+    
+    #tool-btn:checked+ul {
+        display: block;
+    }
+    
+    .popup {
+        position: absolute;
+        background: white;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        width: 250px;
+        height: 170px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 5px;
+        z-index: 10;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s ease-in-out scale(0);
+        padding: 15px;
+        padding-top: 12px;
+    }
+    
+    .edit-popup.show,
+    .info-popup.show,
+    .new-popup.show {
+        opacity: 1;
+        pointer-events: auto;
+        transition: scale(1);
+    }
+    
+    .info-popup.show {
+        opacity: 1;
+        pointer-events: auto;
+        transition: scale(1);
+    }
+    
+    .popup .close-btn {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+    }
+    
+    .popup .popup-content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    
+    #last-opened {
+        font-size: 13px;
+    }
+    
+    .popup-submit,
+    .popup-delete {
+        margin-top: 15px;
+        padding: 5px;
+        text-align: center;
+        width: 35%;
+        float: right;
+        background: linear-gradient(45deg, rgb(203, 203, 212), rgb(236, 82, 82));
+        border-radius: 7px;
+    }
+    
+    .popup-delete {
+        float: left;
+        background: greenyellow;
+    }
+    
+    .popup-label {
+        font-weight: 500;
+        font-size: 17px;
+    }
+    
+    .popup-input::before {
+        box-shadow: none;
+    }
+    
+    .popup-input {
+        outline: none;
+        margin-left: 10px;
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid;
+        padding-left: 5px;
+        font-size: 13.5px;
+    }
+    
+    .close-btn {
+        float: right;
+        width: 22px;
+        height: 22px;
+        text-align: center;
+        line-height: 22px;
+        border-radius: 5px;
+    }
+    
+    .close-btn:hover {
+        background: rgb(206, 202, 202);
+    }
+    
+    .recently-document .buttonn,
+    .favorite-document .buttonn {
+        background: transparent;
+        border: none;
+        color: gray;
+        cursor: pointer;
+        text-align: center;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        padding: 0 7px;
+        padding-top: 5px;
+    }
+    /* CSS */
+    
+    .recently-document .buttonn:focus,
+    .favorite-document .buttonn:focus {
+        outline: none;
+    }
+    
+    .favorite-document .buttonn {
+        color: red;
+    }
+    
+    .side-bar ul::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .side-bar ul::-webkit-scrollbar-track {
+        background: rgb(118, 118, 119);
+        border-radius: 30px;
+    }
+    
+    .side-bar ul::-webkit-scrollbar-thumb {
+        background: #4b4a4a;
+        border-radius: 25px;
+        height: 80px;
+    }
+    
+    .overlay {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(110, 105, 105, 0.3);
+        z-index: 5;
+        display: none;
+    }
+    
+    .overlay.show {
+        display: block;
+    }
